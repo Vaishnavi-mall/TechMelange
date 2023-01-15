@@ -26,6 +26,7 @@ class PositionType(ChoiceEnum):
     member = ('M', 'Member')
 
 
+
 class BaseModel(models.Model):
     id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -35,21 +36,21 @@ class BaseModel(models.Model):
         abstract = True
 
 class TechFest(BaseModel):
-    name = models.CharField(max_length=100)
-    short_description = models.CharField(max_length=600)
-    description = models.TextField()
-    society_logo = models.ImageField(null=True)
-    college_logo= models.ImageField(null=True)
-    university_logo=models.ImageField(null=True)
-    fest_image=models.ImageField(null=True)
-    fest_video = models.FileField(null =True)
-    start_date = models.DateField()
-    end_date = models.DateField()
-    email = models.CharField(max_length=50)
-    instagram = models.CharField(max_length=50)
-    linkedin = models.CharField(max_length=50)
-    facebook = models.CharField(max_length=50)
-    twitter = models.CharField(max_length=50)
+    name = models.CharField(max_length=100,null=True,blank=True)
+    short_description = models.CharField(max_length=600,null=True,blank=True)
+    description = models.TextField(null=True,blank=True)
+    society_logo = models.ImageField(null=True,blank=True)
+    college_logo= models.ImageField(null=True,blank=True)
+    university_logo=models.ImageField(null=True,blank=True)
+    fest_image=models.ImageField(null=True,blank=True)
+    fest_video = models.FileField(null=True,blank=True)
+    start_date = models.DateField(null=True,blank=True)
+    end_date = models.DateField(null=True,blank=True)
+    email = models.CharField(max_length=50,null=True,blank=True)
+    instagram = models.CharField(max_length=50,null=True,blank=True)
+    linkedin = models.CharField(max_length=50,null=True,blank=True)
+    facebook = models.CharField(max_length=50,null=True,blank=True)
+    twitter = models.CharField(max_length=50,null=True,blank=True)
 
     class Meta:
         ordering = ('name',)
@@ -60,17 +61,17 @@ class TechFest(BaseModel):
         return self.name
 
 class Events(BaseModel):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100,null=True,blank=True)
     short_description = models.CharField(max_length=100)
-    description = RichTextUploadingField(config_name='portal_config')
+    description = models.TextField(null=True,blank=True)
     rules = RichTextUploadingField(config_name='portal_config')
-    event_start_date = models.DateField()
-    event_end_date = models.DateField()
-    stages = models.IntegerField()
-    event_start_time = models.TimeField()
-    event_end_time = models.TimeField()
-    event_image = models.ImageField(upload_to="event/images", null=True)
-    event_video = models.FileField(upload_to="event/videos", null=True)
+    event_start_date = models.DateField(null=True,blank=True)
+    event_end_date = models.DateField(null=True,blank=True)
+    stages = models.IntegerField(null=True,blank=True)
+    event_start_time = models.TimeField(null=True,blank=True)
+    event_end_time = models.TimeField(null=True,blank=True)
+    event_image = models.ImageField(upload_to="event/images", null=True,blank=True)
+    event_video = models.FileField(upload_to="event/videos", null=True,blank=True)
     link =  models.TextField(null=True)
 
     class Meta:
@@ -82,10 +83,30 @@ class Events(BaseModel):
         return self.name
 
 
+
+class Images(BaseModel):
+    """ US : 11 """
+    event = models.ForeignKey(Events, on_delete=models.CASCADE, related_name='event_images')
+    name = models.CharField(max_length=100,null=True,blank=True)
+    image = models.ImageField(upload_to="event/images", null=True,blank=True)
+
+    class Meta:
+        ordering = ('-created_at',)
+
+class Videos(BaseModel):
+    """ US : 11 """
+    event = models.ForeignKey(Events, on_delete=models.CASCADE, related_name='event_videos')
+    name = models.CharField(max_length=100,null=True,blank=True)
+    video = models.FileField(upload_to="event/videos", null=True,blank=True)
+
+    class Meta:
+        ordering = ('-created_at',)
+
 class StudentCoordinators(BaseModel):
     event = models.ForeignKey(Events, on_delete=models.CASCADE, related_name='event_student_coordinators')
-    name = models.CharField(max_length=100)
-    image =  models.ImageField(upload_to="event/student_coordinators_images", null=True)
+    name = models.CharField(max_length=100,null=True,blank=True)
+    image =  models.ImageField(upload_to="event/student_coordinators_images", null=True,blank=True)
+    is_design_team= models.BooleanField(default=False)
 
     class Meta:
         ordering = ('name',)
@@ -98,9 +119,8 @@ class StudentCoordinators(BaseModel):
 
 class TeacherCoordinators(BaseModel):
     event = models.ForeignKey(Events, on_delete=models.CASCADE, related_name='event_teacher_coordinators')
-    name = models.CharField(max_length=100)
-    position = models.CharField(max_length=100,null=True)
-    image= models.ImageField(upload_to="event/teacher_coordinator_images", null=True)
+    name = models.CharField(max_length=100,null=True,blank=True)
+    image= models.ImageField(upload_to="event/teacher_coordinator_images", null=True,blank=True)
 
     class Meta:
         ordering = ('name',)
@@ -112,8 +132,8 @@ class TeacherCoordinators(BaseModel):
 
 
 class Speakers(BaseModel):
-    name = models.CharField(max_length=100)
-    image =  models.ImageField(upload_to="event/speakers_images", null=True)
+    name = models.CharField(max_length=100,null=True,blank=True)
+    image =  models.ImageField(upload_to="event/speakers_images", null=True,blank=True)
 
     class Meta:
         ordering = ('name',)
@@ -125,8 +145,8 @@ class Speakers(BaseModel):
 
 
 class Sponsors(BaseModel):
-    name = models.CharField(max_length=100)
-    image= models.ImageField(upload_to="event/sponsors_images", null=True)
+    name = models.CharField(max_length=100,null=True,blank=True)
+    image= models.ImageField(upload_to="event/sponsors_images", null=True,blank=True)
     class Meta:
         ordering = ('name',)
         verbose_name_plural = 'Sponsors'
@@ -138,9 +158,8 @@ class Sponsors(BaseModel):
 
 class StudentCouncilMembers(BaseModel):
     name = models.CharField(max_length=100)
-    position = models.CharField(max_length=50,choices=PositionType.get_choices())
-    image= models.ImageField(upload_to="event/student_council_images", null=True)
-    is_design_team= models.BooleanField(default=False)
+    position = models.CharField(max_length=50,choices=PositionType.get_choices(),null=True,blank=True)
+    image= models.ImageField(upload_to="event/student_council_images", null=True,blank=True)
     class Meta:
         ordering = ('name',)
         verbose_name_plural = 'Student Council Members'
@@ -148,6 +167,7 @@ class StudentCouncilMembers(BaseModel):
 
     def __str__(self):
         return self.name
+
 
 class EventsTimeLine(BaseModel):
     name = models.CharField(max_length=100, null=True)
