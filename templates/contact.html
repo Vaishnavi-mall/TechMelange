@@ -1,15 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block title %}
+Contact Us
+{% endblock title %}
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
-</head>
-
-<body>
-
-</body>
-
-</html>
+{% for i in techFest %}
+<div class="main-content mx-5" style="margin-bottom: 4%;">
+    <span class="heading-1"><b>Contact Us</b></span><br>
+    <div class=" text-size mt-3">
+        In case of any queries, contact us on<br><i class="bi bi-envelope-fill"> {{ i.email }}</i><br>
+        You can also reach us through the mentioned social medias<br>
+        <i class="bi bi-instagram"> {{ i.instagram }}</i><br>
+        <i class="bi bi-linkedin"> {{ i.linkedin }}</i><br>
+        <i class="bi bi-facebook"> {{ i.facebook }}</i><br>
+        <i class="bi bi-twitter"> {{ i.twitter }}</i>
+    </div>   
+</div>
+{% endfor %}
+{% endblock %}
+   
