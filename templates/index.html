@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Tech Melange</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .mynavbar {
+            height: 120px;
+        }
+        
+        .navbar-img {
+            height: 100px;
+            width: 100px;
+            border-radius: 100px;
+        }
+        
+        .navbar-heading {
+            font-size: 40px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 500;
+            line-height: 0;
+        }
+        
+        .navbar-links {
+            font-size: 18px;
+        }
+        
+        .navbarNav {
+            justify-content: end;
+        }
+        
+        .navbar-nav>li {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+        
+        .college-logo {
+            height: 150px;
+            width: 150px;
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+        
+        .university-logo {
+            width: 200px;
+            height: 200px;
+            margin-right: 30px;
+            margin-top: 0px;
+        }
+        
+        .first-part-heading {
+            margin-top: 70px;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 45px;
+        }
+        
+        .second-part {
+            justify-content: center;
+            text-align: center;
+            font-size: 30px;
+            font-family: "Sofia", sans-serif;
+            color: darkblue;
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+        
+        .third-part-video {
+            width: 93%;
+            height: 700px;
+            margin-left: 50px;
+            margin-top: 100px;
+        }
+        
+        .fourth-part-first-col {
+            margin-left: 50px;
+        }
+        
+        .fourth-part-second-col {
+            text-align: right;
+        }
+        
+        .about-us {
+            margin-top: 75px;
+            margin-left: 50px;
+            font-size: 50px;
+            font-weight: 500;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        .about-us-description {
+            margin-left: 50px;
+            margin-right: 50px;
+            font-size: 20px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        
+        .read-more-btn {
+            border-radius: 0;
+            background-color: #00BFFF;
+            border-color: #00BFFF;
+            font-size: 15px;
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        
+        .fifth-part {
+            text-align: center;
+        }
+        
+        .fifth-part-heading {
+            font-size: 50px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        .sixth-part {
+            text-align: center;
+        }
+        
+        .seventh-part {
+            text-align: center;
+        }
+        
+        .seventh-part-heading {
+            font-size: 50px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        .ninth-part {
+            text-align: center;
+        }
+        
+        .ninth-part-heading {
+            font-size: 50px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        .mylastbar {
+            height: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    {% for i in techFest %}
+    <nav class="navbar navbar-light bg-light navbar-expand-lg mynavbar">
+        {% if i.society_logo %}
+        <img class="navbar-img" src="{{i.society_logo.url }}">
+        {% endif %}
+        {% if i.name %}
+        <div style="margin-left: 15px;text-align: left;margin-top: 15px;">
+            <span class="navbar-heading"><b>{{ i.name }}</b></span><br>
+            <span class="text-uppercase" style="line-height: 0;">Most Awaited Technical Fest</span>
+        </div>
+        <div class="collapse navbar-collapse navbarNav">
+            <ul class="navbar-nav navbar-links">
+                <li class="nav-item active">
+                    <a class="nav-link" href="">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="about-us/">About Us</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Event Timeline</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="events/">Events</a>
+                </li> 
+                <li class="nav-item active">
+                    <a class="nav-link" href="student-council/">Student Council</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="contact/">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    {% endif %}
+    <div class="first-part row">
+        <div class="col">
+            {% if i.college_logo %}
+            <img class="college-logo" src="{{i.college_logo.url }}">
+            {% endif %}
+        </div>
+        <div class="col">
+            <h1 class="text-uppercase first-part-heading"><b>{{ i.name }}</b></h1>
+        </div>
+        <div class="col" style="text-align: right; padding: 0;">
+            {% if i.university_logo %}
+            <img class="university-logo" src="{{i.university_logo.url }}">
+            {% endif %}
+        </div>
+    </div>
+    {% if i.short_description %}
+    <div class="second-part row">
+        {{ i.short_description }}
+    </div>
+    {% endif %}
+    <div class="third-part row">
+        {% if i.fest_video %}
+        <video class="third-part-video" width="320" height="240" controls>
+            <source src="{{i.fest_video.url }}" type="video/mp4">
+          </video>
+          {% endif %}
+    </div>
+    {% if i.description %}
+    <div class="fourth-part row mt-5">
+        <div class="col-7 fourth-part-first-col bg-light">
+            <p class="about-us text-uppercase">
+                About Us
+            </p>
+            <p class="about-us-description">
+                {% autoescape off %}
+                {{ i.description }}
+                {% endautoescape %}
+               
+            </p>
+            <div style="text-align:center;margin-top:50px;">
+                <a href="about-us/"><button type="button" class="btn btn-primary btn-lg read-more-btn">Read More</button></a>
+            </div>
+        </div>
+        <div class="col-4 fourth-part-second-col">
+            <img src="{ {i.fest_image.url }}">
+        </div>
+    </div>
+    {% endif %}
+    {% if events %}
+    <div class="fifth-part mt-5">
+        <h1 class="fifth-part-heading text-uppercase">Events</h1>
+    </div>
+   
+    <div class="sixth-part mt-5">
+        {% for event in events %} {% if forloop.counter|divisibleby:"4" %}
+        <br> {% endif %}
+        <div style="display: inline-block;">
+            <img src="{{ event.event_image.url }}" style="height: 400px;width:400px;padding:30px;"><br>
+            <button type="button" class="btn btn-primary btn-lg read-more-btn">Register Now</button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if speakers %}
+    <div class="seventh-part mt-5">
+        <h1 class="seventh-part-heading text-uppercase">Speakers</h1>
+    </div>
+    <div class="eighth-part" style="margin-left:400px">
+        {% for speaker in speakers %} {% if forloop.counter|divisibleby:"4" %}
+        <br> {% endif %}
+        <div style="display:inline-block;">
+            <img src="{{ speaker.image.url }}" style="height: 250px;width:250px;border-radius: 150px;margin-right:200px;"><br>
+            <p class="mt-3" style="font-family: 'Times New Roman', Times, serif;font-size: 28px;">{{ speaker.name }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if sponsors %}
+    <div class="ninth-part mt-5">
+        <h1 class="ninth-part-heading text-uppercase">Media Partners and Sponsors</h1>
+    </div>
+    <div class="tenth-part" style="margin-left:450px">
+        {% for sponsor in sponsors %} {% if forloop.counter|divisibleby:"4" %}
+        <br> {% endif %}
+        <div style="display :inline-block;">
+            <img src="{{ sponsor.image.url }}" style="height: 200px;width:200px;border-radius: 100px;margin-right:200px;"><br>
+            <p class="mt-3" style="font-family: 'Times New Roman', Times, serif;font-size: 28px;">{{ sponsor.name }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if i.name %}
+    <nav class="navbar navbar-light bg-light navbar-expand-lg mylastbar">
+        <div style="margin-left: 100px;text-align: left;margin-top: 15px;">
+            <span style="line-height: 0;">Copyright(c) {{ i.name }}  {% now "Y" %} </span>
+            <span style="line-height: 0;margin-left:900px;">Powered by {{ i.name }}</span>
+        </div>
+    </nav>
+    {% endif %}
+    {% endfor %}
+</body>
+
+</html>
