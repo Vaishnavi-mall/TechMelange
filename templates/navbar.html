@@ -1,0 +1,30 @@
+{% load static %}   
+<nav class="navbar navbar-light bg-light navbar-expand-lg mynavbar"> 
+        <img class="navbar-img" src="{{ MEDIA_URL }}/media/eniac.jpeg">
+        <div class="mt-3 ml-2">
+            <span class="navbar-heading"><b>Tech Melange</b></span><br>
+            <span class="text-uppercase">Most Awaited Technical Fest</span>
+        </div>
+        <div class="collapse navbar-collapse navbarNav">
+            <ul class="navbar-nav navbar-links">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'about-us' %}">About Us</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'event-timeline' %}">Event Timeline</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'events' %}">Events</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'student-council' %}">Student Council</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
