@@ -29,8 +29,9 @@ class StudentCouncilView(View):
     template_name = 'student-council.html'
 
     def get(self, request, **kwargs):
-        studentCouncil = StudentCouncilMembers.objects.all()
-        return render(request, template_name="student-council.html", context={'studentCouncil' : studentCouncil})
+        studentCouncil = StudentCouncilMembers.objects.filter(is_design_team=False).order_by('created_at')
+        designTeam= StudentCouncilMembers.objects.filter(is_design_team=True).order_by('created_at')
+        return render(request, template_name="student-council.html", context={'studentCouncil' : studentCouncil,'designTeam' : designTeam})
     
 class ContactView(View):
     template_name = 'contact.html'
@@ -51,4 +52,14 @@ class EventView(View):
 
     def get(self, request, **kwargs):
         event = Events.objects.get(id=kwargs['event_id'])
-        return render(request, template_name="event.html", context={'event':event})
+        studentCoordinators= StudentCoordinators.objects.filter(event= event.id)
+        teacherCoordinators= TeacherCoordinators.objects.filter(event= event.id)
+        return render(request, template_name="event.html", context={'event':event,'studentCoordinators':studentCoordinators,'teacherCoordinators':teacherCoordinators})
+
+
+class EventsTimelineView(View):
+    template_name = 'event-timeline.html'
+
+    def get(self, request, **kwargs):
+        eventTimeline = EventsTimeLine.objects.all()
+        return render(request, template_name="event-timeline.html", context={'eventTimeline':eventTimeline})
