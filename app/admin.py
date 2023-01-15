@@ -17,8 +17,9 @@ class TechFestAdmin(SummernoteModelAdmin):
     list_display = ('name', 'start_date', 'end_date')
 
 @admin.register(Events)
-class EventsAdmin(admin.ModelAdmin):
+class EventsAdmin(SummernoteModelAdmin):
     show_full_result_count = True
+    summernote_fields = ('description','rules',)
     list_display = ('name', 'event_start_date', 'event_end_date')
 
 @admin.register(StudentCoordinators)
@@ -45,3 +46,8 @@ class SpeakersAdmin(admin.ModelAdmin):
 class SponsorsAdmin(admin.ModelAdmin):
     show_full_result_count = True
     list_display = ('name',)
+
+@admin.register(EventsTimeLine)
+class EventsTimeLineAdmin(admin.ModelAdmin):
+    show_full_result_count = True
+    list_display = ('content',)
