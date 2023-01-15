@@ -29,7 +29,7 @@ Home
                 About Us
             </p>
             <p class="about-us-description">
-                {{ i.description|striptags|linebreaksbr|truncatewords:117 }}
+                {{ i.description|striptags|linebreaksbr|truncatewords:300 }}
             </p>
             <div style="text-align:center;margin-top:50px;">
                 <a href="about-us/"><button type="button" class="text-size-small btn btn-primary btn-lg read-more-btn">Read More</button></a>
@@ -59,7 +59,7 @@ Home
         {% for speaker in speakers %} {% if forloop.counter|divisibleby:"4" %}
         <br> {% endif %}
         <div class="add-spacing" style="display:inline-block;">
-            <img src="{{ speaker.image.url }}" style="height: 250px;width:250px;border-radius: 150px;"><br>
+            <img src="{{ speaker.image.url }}" style="height: 400px;width:350px;border-radius: 250px;"><br>
             <p class="text-size-small mt-3">{{ speaker.name }}</p>
         </div>
         {% endfor %}
