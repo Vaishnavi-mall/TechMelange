@@ -64,7 +64,7 @@ class Events(BaseModel):
     name = models.CharField(max_length=100,null=True,blank=True)
     short_description = models.CharField(max_length=100)
     description = models.TextField(null=True,blank=True)
-    rules = RichTextUploadingField(config_name='portal_config',null=True,blank=True)
+    rules = models.TextField(null=True,blank=True)
     event_start_date = models.DateField(null=True,blank=True)
     event_end_date = models.DateField(null=True,blank=True)
     stages = models.IntegerField(null=True,blank=True)
@@ -171,7 +171,7 @@ class StudentCouncilMembers(BaseModel):
 
 class EventsTimeLine(BaseModel):
     name = models.CharField(max_length=100, null=True)
-    content = RichTextUploadingField(config_name='portal_config')
+    content = models.TextField(null=True,blank=True)
     class Meta:
         verbose_name_plural = 'Event TimeLine'
         verbose_name = 'Event TimeLine'
